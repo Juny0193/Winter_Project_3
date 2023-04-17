@@ -88,7 +88,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             Debug.Log("Load the 'Room for 1' ");
 
-            PhotonNetwork.LoadLevel("Roomfor1");
+            PhotonNetwork.LoadLevel("Room1");
         }
     }
 }
