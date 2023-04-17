@@ -244,6 +244,10 @@ public class ChatManager : MonoBehaviourPunCallbacks
                     m_inputField.text = "";
                 }
             }
+
+        m_inputField.DeactivateInputField();
+        // Reset the selected object when the chat field is deactivated
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void SelectType()
