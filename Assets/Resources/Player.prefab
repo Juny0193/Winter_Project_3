@@ -51,6 +51,8 @@ MonoBehaviour:
   MoveSpeed: 3
   SprintSpeed: 3
   camform: {fileID: 5718027869902590110}
+  cinemachine: {fileID: 0}
+  cf: {fileID: 0}
   camoffset: {x: 0, y: 0, z: 0}
 --- !u!114 &-4283352059839942333
 MonoBehaviour:

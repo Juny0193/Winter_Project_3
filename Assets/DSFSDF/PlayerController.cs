@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 using Photon.Pun;
 using Photon.Realtime;
-
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private float OriginSpeed;
     public float SprintSpeed;
     public Transform camform;
+    public GameObject cinemachine;
+    public CinemachineFreeLook cf;
 
     private float jumpforce = 3.0f;
     private float gravity = -9.8f;
@@ -29,12 +31,19 @@ public class PlayerController : MonoBehaviour
         PV = this.GetComponent<PhotonView>();
         characterController = GetComponentInChildren<CharacterController>();
         animator = GetComponentInChildren<Animator>();
-        camform = Camera.main.transform;
+        cinemachine = GameObject.Find("CM FreeLook1");
+        cf = cinemachine.GetComponent<CinemachineFreeLook>();
+
+        if (PV.IsMine)
+        {
+            cf.Follow = this.transform;
+            cf.LookAt = this.transform;
+        }
 
         OriginSpeed = MoveSpeed;
 
-        camoffset.z = -3;
-        camoffset.y = 2;
+        //camoffset.z = -3;
+        //camoffset.y = 2;
 
         chatManager = GameObject.Find("ChatManager").GetComponent<ChatManager>();
     }
@@ -52,7 +61,7 @@ public class PlayerController : MonoBehaviour
             {
                 Jump();
             }
-            
+
             if (!characterController.isGrounded)
             {
                 dir.y += gravity * Time.deltaTime;
@@ -63,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
             characterController.Move(dir * Time.deltaTime * MoveSpeed);
             //MoveAnim(xput,zput);
-            transform.LookAt(Vector3.Lerp(transform.position,transform.position + dir_xz,rotationSpeed*Time.deltaTime));
+            transform.LookAt(Vector3.Lerp(transform.position, transform.position + dir_xz, rotationSpeed * Time.deltaTime));
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -84,15 +93,17 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        
+
     }
 
     void LateUpdate()
     {
         if (PV.IsMine)
         {
-            camform.position = this.transform.position + camoffset;
-            camform.LookAt(this.transform.position);
+            //camform.position = this.transform.position + camoffset;
+            //camform.LookAt(this.transform.position);
+            //camform.rotation = Quaternion.Euler(camform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, camform.rotation.eulerAngles.z);
+            //camform.position = this.transform.position + camoffset;
         }
     }
 
@@ -107,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
     void MoveAnim(float x, float z)
     {
-        if(x != 0 || z != 0)
+        if (x != 0 || z != 0)
         {
             animator.SetFloat("isRunning", x * x + z * z);
         }
