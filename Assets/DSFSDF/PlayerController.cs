@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float SprintSpeed;
     public Transform camform;
     public GameObject cinemachine;
-    public CinemachineFreeLook cf;
+    public CinemachineFreeLook cf;  
 
     private float jumpforce = 3.0f;
     private float gravity = -9.8f;
@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
     private float rotationSpeed = 0.5f;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         PV = this.GetComponent<PhotonView>();
@@ -56,7 +57,6 @@ public class PlayerController : MonoBehaviour
             float xput = Input.GetAxis("Horizontal");
             float zput = Input.GetAxis("Vertical");
 
-
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
@@ -81,19 +81,17 @@ public class PlayerController : MonoBehaviour
             }
             else if (Input.GetKey(KeyCode.LeftShift))
             {
-                animator.SetFloat("h", xput);
-                animator.SetFloat("v", zput);
+                animator.SetFloat("h", dir.x);
+                animator.SetFloat("v", dir.y);
             }
             else if (!Input.GetKey(KeyCode.LeftShift))
             {
-                animator.SetFloat("h", xput * 0.5f);
-                animator.SetFloat("v", zput * 0.5f);
+                animator.SetFloat("h", dir.x * 0.5f);
+                animator.SetFloat("v", dir.z * 0.5f);
 
                 MoveSpeed = OriginSpeed;
             }
-
         }
-
     }
 
     void LateUpdate()
