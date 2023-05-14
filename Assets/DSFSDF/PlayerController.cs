@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
     public float SprintSpeed;
     public Transform camform;
     public GameObject cinemachine;
-    public CinemachineFreeLook cf;  
+    public GameObject followCamera;
+    public CinemachineFreeLook cf;
+    public CinemachineVirtualCamera cv;
 
     private float jumpforce = 3.0f;
     private float gravity = -9.8f;
@@ -26,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private float rotationSpeed = 0.5f;
 
+    public GameObject camPos;
+    public GameObject unityChan;
 
     void Start()
     {
@@ -35,10 +39,12 @@ public class PlayerController : MonoBehaviour
         cinemachine = GameObject.Find("CM FreeLook1");
         cf = cinemachine.GetComponent<CinemachineFreeLook>();
 
+
         if (PV.IsMine)
         {
-            cf.Follow = this.transform;
-            cf.LookAt = this.transform;
+            cf.Follow = camPos.transform;
+            cf.LookAt = unityChan.transform;
+
         }
 
         OriginSpeed = MoveSpeed;

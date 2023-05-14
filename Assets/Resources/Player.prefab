@@ -53,8 +53,12 @@ MonoBehaviour:
   SprintSpeed: 3
   camform: {fileID: 5718027869902590110}
   cinemachine: {fileID: 0}
+  followCamera: {fileID: 0}
   cf: {fileID: 0}
+  cv: {fileID: 0}
   camoffset: {x: 0, y: 0, z: 0}
+  camPos: {fileID: 5718027869902621886}
+  unityChan: {fileID: 5718027869902622186}
 --- !u!114 &-4283352059839942333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.76
       objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
       propertyPath: m_RootOrder
@@ -204,6 +212,11 @@ Transform:
 --- !u!4 &5718027869902590204 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400100, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
+  m_PrefabInstance: {fileID: 5718027869902719512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5718027869902621886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100006, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
   m_PrefabInstance: {fileID: 5718027869902719512}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5718027869902622186 stripped
