@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7263103581802336898}
   - component: {fileID: 6009035196970376487}
   - component: {fileID: 8394875616988359149}
+  - component: {fileID: 2817571708019397991}
   m_Layer: 0
   m_Name: Oak_Table
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2817571708019397991
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034538925466994744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6206849629555422820, guid: 7a52c1821b9937a4cb0bc3ec38d80d26, type: 3}

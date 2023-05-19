@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8788910542597154869}
   - component: {fileID: 5645156613619672976}
   - component: {fileID: 7616527387503596378}
+  - component: {fileID: 211324825145232132}
   m_Layer: 0
   m_Name: Ghost_Desk
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &211324825145232132
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8265138024946348687}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1857916439425390961, guid: 80f102f6def047545937ed17cf6b02a0, type: 3}
