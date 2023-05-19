@@ -13,7 +13,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        GameObject PI = PhotonNetwork.Instantiate("Player", new Vector3(spawner.transform.position.x, spawner.transform.position.y, spawner.transform.position.z), Quaternion.identity);
+        GameObject PI = PhotonNetwork.Instantiate("PlayerArmature", new Vector3(spawner.transform.position.x, spawner.transform.position.y, spawner.transform.position.z), Quaternion.identity);
         Debug.Log("생성완료");
     }
 

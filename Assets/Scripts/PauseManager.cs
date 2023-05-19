@@ -16,6 +16,11 @@ public class PauseManager : MonoBehaviour
 
     public bool isPaused;
 
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
@@ -27,6 +32,7 @@ public class PauseManager : MonoBehaviour
     public void ResumeGame()
     {
         isPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
         pauseCanvas.SetActive(false);
         optionCanvas.SetActive(false);
         quitCanvas.SetActive(false);
@@ -35,6 +41,7 @@ public class PauseManager : MonoBehaviour
     public void PauseGame()
     {
         isPaused = true;
+        Cursor.lockState = CursorLockMode.None;
         optionCanvas.SetActive(false);
         quitCanvas.SetActive(false);
         pauseCanvas.SetActive(true);

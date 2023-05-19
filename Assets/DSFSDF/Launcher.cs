@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -18,6 +20,15 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     [SerializeField]
     private GameObject SelectImage;
+
+    [SerializeField]
+    private GameObject loadingPanel;
+
+    [SerializeField]
+    private GameObject loadingColor;
+
+    [SerializeField]
+    private GameObject loadingBlack;
 
     #endregion
 
@@ -42,13 +53,23 @@ public class Launcher : MonoBehaviourPunCallbacks
         controlPanel.SetActive(true);
     }
 
-  
+    private void Update()
+    {
+        // 씬 로딩 상태에 따라 로딩 바를 업데이트
+        if (PhotonNetwork.LevelLoadingProgress < 1)
+        {
+            loadingColor.GetComponent<Image>().fillAmount = PhotonNetwork.LevelLoadingProgress;
+        }
+    }
 
     public void Connect()
     {
         progressLabel.SetActive(true);
         controlPanel.SetActive(false);
         SelectImage.SetActive(false);
+        loadingBlack.SetActive(true);
+        loadingColor.SetActive(true);
+        loadingPanel.SetActive(true);
 
         isConnecting = true;
         if (PhotonNetwork.IsConnected)
@@ -91,4 +112,6 @@ public class Launcher : MonoBehaviourPunCallbacks
             PhotonNetwork.LoadLevel("Room1");
         }
     }
+
+    
 }

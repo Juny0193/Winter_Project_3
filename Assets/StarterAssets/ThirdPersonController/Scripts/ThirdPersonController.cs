@@ -111,6 +111,9 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private PauseManager _pauseManager;
+        private ChatManager _chatManager;
+        private GameObject _followCamera;
 
         private const float _threshold = 0.01f;
 
@@ -134,7 +137,17 @@ namespace StarterAssets
             // get a reference to our main camera
             if (_mainCamera == null)
             {
+                if(GetComponent<PhotonView>().IsMine)
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            }
+
+            if(_followCamera == null)
+            {
+                if (GetComponent<PhotonView>().IsMine)
+                {
+                    _followCamera = GameObject.Find("PlayerFollowCamera");
+                    _followCamera.GetComponent<CinemachineVirtualCamera>().Follow = transform.GetChild(0);
+                }
             }
         }
 
@@ -145,6 +158,8 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+            _pauseManager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
+            _chatManager = GameObject.Find("ChatManager").GetComponent<ChatManager>();
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -162,6 +177,7 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
+            if(_pauseManager.isPaused || _chatManager.isChatting) return;
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -169,6 +185,7 @@ namespace StarterAssets
 
         private void LateUpdate()
         {
+            if (_pauseManager.isPaused || _chatManager.isChatting) return;
             CameraRotation();
         }
 
