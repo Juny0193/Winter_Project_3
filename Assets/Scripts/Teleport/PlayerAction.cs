@@ -19,7 +19,8 @@ public class PlayerAction : MonoBehaviour
     {
         if (collision.CompareTag("Teleport"))
         {
-            targetPoint = collision.gameObject;           
+            targetPoint = collision.gameObject;
+            Debug.Log(targetPoint.name);
         }
     }
 
@@ -30,17 +31,15 @@ public class PlayerAction : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(MoveSpawn());
-            Debug.Log("E ´©¸§");
+            
         }
     }
 
     IEnumerator MoveSpawn()
-    {
-        yield return new WaitForSeconds(0.5f);
-
+    {        
         switch (targetPoint.name) 
         {
             case "Outside":
@@ -55,6 +54,10 @@ public class PlayerAction : MonoBehaviour
             case "Inside3":
                 gameObject.transform.position = toPoint[2].position;
                 break;
-        }       
+        }
+
+        yield return null;
+
+        
     }
 }
