@@ -10,7 +10,7 @@ public class ServerImageLoad : MonoBehaviour
     private Renderer renderer;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         renderer = GetComponent<Renderer>();
         StartCoroutine(TextureLoad());
@@ -35,7 +35,7 @@ public class ServerImageLoad : MonoBehaviour
 
         if (www.result != UnityWebRequest.Result.Success)
         {
-            Debug.LogError(www.error);
+            Debug.Log("Error: " + www.error);
         }
         else
         {
