@@ -89,23 +89,20 @@ public class ChatManager : MonoBehaviourPunCallbacks
             if (isChatting)
             {
                 m_inputField.DeactivateInputField();
-
+                Cursor.lockState = CursorLockMode.Locked;
+                isChatting = false;
                 // Reset the selected object when the chat field is deactivated
                 EventSystem.current.SetSelectedGameObject(null);
             }
             else
             {
                 m_inputField.ActivateInputField();
-
+                Cursor.lockState = CursorLockMode.None;
+                isChatting = true;
                 // Set the selected object to the chat input field when it is activated
                 EventSystem.current.SetSelectedGameObject(m_inputField.gameObject);
             }
         }
-
-        if(m_inputField.isFocused == true)
-            isChatting = true;
-        else
-            isChatting = false;
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -246,6 +243,8 @@ public class ChatManager : MonoBehaviourPunCallbacks
             }
 
         m_inputField.DeactivateInputField();
+        Cursor.lockState = CursorLockMode.Locked;
+        isChatting = false;
         // Reset the selected object when the chat field is deactivated
         EventSystem.current.SetSelectedGameObject(null);
     }
@@ -254,6 +253,7 @@ public class ChatManager : MonoBehaviourPunCallbacks
     {
         worldButton.SetActive(true);
         whisperButton.SetActive(true);
+        isChatting = true;
     }
 
     public void SelectWorld()
@@ -262,6 +262,8 @@ public class ChatManager : MonoBehaviourPunCallbacks
         whisperButton.SetActive(false);
         typeText.text = "월드";
         chatType = ChatType.World;
+        isChatting = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void SelectWhisper()
@@ -286,6 +288,8 @@ public class ChatManager : MonoBehaviourPunCallbacks
         targetPlayerName = targetInputField.text;
         targetInputField.text = "";
         targetInputField.gameObject.SetActive(false);
+        isChatting = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public string getGuild()

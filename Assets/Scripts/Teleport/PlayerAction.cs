@@ -74,7 +74,7 @@ public class PlayerAction : MonoBehaviour
                 break;
         }
 
-        yield return new WaitForSeconds(0.5f); // 1 second delay
+        yield return new WaitForSeconds(0.1f); // 1 second delay
 
         isCooldown = false;
     }

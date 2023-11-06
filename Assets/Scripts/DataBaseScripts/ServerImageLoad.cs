@@ -7,12 +7,12 @@ public class ServerImageLoad : MonoBehaviour
 {
     public string url;
 
-    private Renderer renderer;
+    private Renderer rend;
 
     // Start is called before the first frame update
     void Awake()
     {
-        renderer = GetComponent<Renderer>();
+        rend = GetComponent<Renderer>();
         StartCoroutine(TextureLoad());
     }
 
@@ -42,7 +42,7 @@ public class ServerImageLoad : MonoBehaviour
             // ºó Material »ý¼º
             Material material = new Material(Shader.Find("Standard"));
             material.mainTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-            renderer.material = material;
+            rend.material = material;
         }
     }
 }
